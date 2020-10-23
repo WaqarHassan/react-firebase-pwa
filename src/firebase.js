@@ -18,16 +18,10 @@ let messaging;
 
 // we need to check if messaging is supported by the browser
 if (firebase.messaging.isSupported()) {
+  console.log("======= == =  Messaging supported");
   messaging = firebase.messaging();
+} else {
+  console.log("======= == =  Messaging  NOOOT supported");
 }
 
 export { messaging };
-
-// import * as firebase from "firebase/app";
-// import "firebase/messaging";
-// const initializedFirebaseApp = firebase.initializeApp({
-//      // Project Settings => Add Firebase to your web app
-//      messagingSenderId: "1234567890",
-// });
-// const messaging = initializedFirebaseApp.messaging();
-// export { messaging };

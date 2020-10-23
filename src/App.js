@@ -6,6 +6,7 @@ import "./App.css";
 import { messaging } from "./firebase";
 
 const App = () => {
+  const [showIframe, setShowIframe] = useState(false);
   useEffect(() => {
     messaging
       .requestPermission()
@@ -13,13 +14,17 @@ const App = () => {
         const token = await messaging.getToken();
         localStorage.setItem("sw-token", token);
         console.log("Token -----===--  : ", token);
+        document.getElementById("token").textContent = token;
       })
       .catch(function (err) {
         console.log("Unable to get permission to notify.", err);
       });
-    navigator.serviceWorker.addEventListener("message", (message) =>
-      console.log(message)
-    );
+    navigator.serviceWorker.addEventListener("message", (message) => {
+      document.getElementById("notif").textContent =
+        message.data["firebase-messaging-msg-data"].notification.body;
+
+      console.log(message);
+    });
   }, []);
 
   navigator.serviceWorker.addEventListener("message", (message) => {
@@ -33,6 +38,9 @@ const App = () => {
       "Body: ",
       message.data["firebase-messaging-msg-data"].notification.body
     );
+    document.getElementById("notif").textContent =
+      message.data["firebase-messaging-msg-data"].notification.body;
+
     console.log("=================================== ");
 
     console.log(message.data);
@@ -52,6 +60,24 @@ const App = () => {
 
   return (
     <div className="main-container">
+      <button
+        className="btn btn-info"
+        onClick={() => setShowIframe(!showIframe)}
+      >
+        Show Orange site
+      </button>
+      {showIframe && (
+        <iframe
+          src="https://portail-moringa.com/obf/fr/accueil.html"
+          title="W3Schools Free Online Web Tutorials"
+          width="300px"
+          height="300px"
+          // sandbox="allow-forms allow-scripts"
+        ></iframe>
+      )}
+
+      <p id="notif"></p>
+      <h1 id="token"></h1>
       <input
         type="text"
         className="search"
