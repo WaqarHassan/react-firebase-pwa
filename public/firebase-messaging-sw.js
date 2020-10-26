@@ -4,7 +4,7 @@ const urlsToCache = [
   "offline.html",
   "bg.png",
   "logo.png",
-  "https://hdwallpaper20.com/wp-content/uploads/2017/07/wallpaper-wp4001752.jpg",
+  // "https://hdwallpaper20.com/wp-content/uploads/2017/07/wallpaper-wp4001752.jpg",
 ];
 
 const self = this;
