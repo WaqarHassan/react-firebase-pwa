@@ -14,7 +14,7 @@ const App = () => {
         const token = await messaging.getToken();
         localStorage.setItem("sw-token", token);
         console.log("Token -----===--  : ", token);
-        document.getElementById("token").textContent = token;
+        // document.getElementById("token").textContent = token;
       })
       .catch(function (err) {
         console.log("Unable to get permission to notify.", err);
@@ -60,13 +60,13 @@ const App = () => {
 
   return (
     <div className="main-container">
-      <button
+      {/* <button
         className="btn btn-info"
         onClick={() => setShowIframe(!showIframe)}
       >
         Show Orange site
-      </button>
-      {showIframe && (
+      </button> */}
+      {/* {showIframe && (
         <iframe
           src="https://portail-moringa.com/obf/fr/accueil.html"
           title="W3Schools Free Online Web Tutorials"
@@ -74,18 +74,22 @@ const App = () => {
           height="300px"
           // sandbox="allow-forms allow-scripts"
         ></iframe>
-      )}
+      )} */}
 
-      <p id="notif"></p>
-      <h1 id="token"></h1>
-      <input
+      {/* <p id="notif"></p> */}
+      <div>
+        <h1> PWA Push Notifications</h1>
+        <div className="push-notifications" id="notif"></div>
+      </div>
+      {/* <h1 id="token"></h1> */}
+      {/* <input
         type="text"
         className="search"
         placeholder="Search..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyPress={search}
-      />
+      /> */}
       {weather.main && (
         <div className="city">
           <h2 className="city-name">
@@ -97,11 +101,6 @@ const App = () => {
             <sup>&deg;C</sup>
           </div>
           <div className="info">
-            <img
-              className="city-icon"
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-              alt={weather.weather[0].description}
-            />
             <p>{weather.weather[0].description}</p>
           </div>
         </div>
