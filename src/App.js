@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import axios from "axios";
 import { fetchWeather } from "./api/fetchWeather";
 import "./App.css";
 
@@ -14,6 +14,16 @@ const App = () => {
         const token = await messaging.getToken();
         localStorage.setItem("sw-token", token);
         console.log("Token -----===--  : ", token);
+        axios
+          .post("http://64.227.13.210/pwa/add_devicetoken.php", {
+            deviceToken: token,
+          })
+          .then(function (resp) {
+            console.log("TOken upload success, Respo: ", resp);
+          })
+          .catch(function (error) {
+            console.log("TOken upload Error, Error: ", error);
+          });
         // document.getElementById("token").textContent = token;
       })
       .catch(function (err) {
