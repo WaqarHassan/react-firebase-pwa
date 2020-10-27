@@ -1,5 +1,6 @@
 const CACHE_NAME = "version-2";
 const urlsToCache = [
+  "/",
   "index.html",
   "offline.html",
   "bg.png",
@@ -42,8 +43,10 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then(() => {
-      return fetch(event.request);
-      // .catch(() => caches.match("offline.html"));
+      return fetch(event.request).catch(() => {
+        // debugger;
+        caches.match("offline.html");
+      });
     })
   );
 });
