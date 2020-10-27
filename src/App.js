@@ -7,6 +7,7 @@ import { messaging } from "./firebase";
 
 const App = () => {
   const [showIframe, setShowIframe] = useState(false);
+  const [onLine, setOnLine] = useState(navigator.onLine);
   useEffect(() => {
     messaging
       .requestPermission()
@@ -15,7 +16,7 @@ const App = () => {
         localStorage.setItem("sw-token", token);
         console.log("Token -----===--  : ", token);
         axios
-          .post("http://64.227.13.210/pwa/add_devicetoken.php", {
+          .post("https://app.supportmateio.dk/pwa/add_devicetoken.php", {
             deviceToken: token,
           })
           .then(function (resp) {
@@ -35,7 +36,10 @@ const App = () => {
 
       console.log(message);
     });
+    setOnLine(navigator.onLine);
   }, []);
+
+  useEffect(() => setOnLine(navigator.onLine), navigator.onLine);
 
   navigator.serviceWorker.addEventListener("message", (message) => {
     debugger;
@@ -70,13 +74,16 @@ const App = () => {
 
   return (
     <div className="main-container">
-      {/* <button
+      <div style={{ color: "#ff8c00" }}>
+        {onLine || <h3>You are Offline</h3>}
+      </div>
+      <button
         className="btn btn-info"
         onClick={() => setShowIframe(!showIframe)}
       >
         Show Orange site
-      </button> */}
-      {/* {showIframe && (
+      </button>
+      {showIframe && (
         <iframe
           src="https://portail-moringa.com/obf/fr/accueil.html"
           title="W3Schools Free Online Web Tutorials"
@@ -84,7 +91,7 @@ const App = () => {
           height="300px"
           // sandbox="allow-forms allow-scripts"
         ></iframe>
-      )} */}
+      )}
 
       {/* <p id="notif"></p> */}
       <div>

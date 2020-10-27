@@ -2,7 +2,7 @@ html,
 body,
 #root {
   font: 0.9rem sans-serif;
-  background: #f86204;
+  background: white;
   color: #1e2432;
   height: 100%;
   margin: 0;
@@ -13,6 +13,7 @@ body,
   /* url("https://hdwallpaper20.com/wp-content/uploads/2017/07/wallpaper-wp4001752.jpg"); */
   background-size: cover;
   background-position: center;
+  background: white;
 }
 
 .main-container {
@@ -100,5 +101,5 @@ p {
   border-radius: 12px;
   /* transition: all 0.3s ease; */
   box-shadow: 0 5px 45px 0 rgba(110, 123, 131, 0.1);
-  border: 1px solid #dfdeed;
+  border: 1px solid black;
 }
