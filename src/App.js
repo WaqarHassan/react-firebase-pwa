@@ -95,7 +95,7 @@ const App = () => {
 
       {/* <p id="notif"></p> */}
       <div>
-        <h1> PWA Push Notifications</h1>
+        <h1> PWA Demo</h1>
         <div className="push-notifications" id="notif"></div>
       </div>
       {/* <h1 id="token"></h1> */}

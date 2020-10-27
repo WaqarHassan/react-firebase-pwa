@@ -1,6 +1,6 @@
 {
-  "short_name": "PWA Orange",
-  "name": "PWA Push Notifications",
+  "short_name": "Orange",
+  "name": "PWA Demo",
   "icons": [
     {
       "src": "/images/logo.png",
