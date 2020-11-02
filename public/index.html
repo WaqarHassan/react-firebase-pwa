@@ -7,21 +7,36 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Modern PWA Weather React Application" />
     <link rel="apple-touch-icon" href="./images/logo.png" />
-    <link rel="manifest" href="./manifest.json" />
+    <link
+      rel="manifest"
+      href="https://weather-pwa.s3.ap-south-1.amazonaws.com/manifest.json"
+    />
     <title>Orange</title>
+    <!-- <script src="app.js"></script> -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("firebase-messaging-sw.js")
-            .then((reg) => console.log("Success: ", reg.scope))
-            .catch((err) => console.log("Failure: ", err));
-        });
-      }
-    </script>
   </body>
+  <script>
+    // var headID = document.getElementsByTagName("head")[0];
+
+    // Add Menifest
+    // var link = document.createElement("link");
+    // link.rel = "manifest";
+
+    // link.href = "https://weather-pwa.s3.ap-south-1.amazonaws.com/manifest.json";
+    // headID.appendChild(link);
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register(
+            "https://weather-pwa.s3.ap-south-1.amazonaws.com/firebase-messaging-sw.js"
+          )
+          .then((reg) => console.log("Success: ", reg.scope))
+          .catch((err) => console.log("Failure: ", err));
+      });
+    }
+  </script>
 </html>
